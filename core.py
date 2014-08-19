@@ -27,5 +27,11 @@ def get_todo_path(root=None):
 			create_todo_file(f)
 			return f
 
-def add(argv):
+
+def new_index(file):
+	"""Read [file] and return max(indices) + 1 as new index"""
+	with open(file) as todo:
+		indices = [int(l.split(':', 1)[0]) for l in todo]
+		m = max(indices) if indices != [] else -1
+	return m + 1
 
