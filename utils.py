@@ -1,12 +1,12 @@
 import sys
 
-loglevel = 3
+import params
 
 
 def log(msg, level=2):
 	"""Print log messages whom level is bellow loglevel
 	level: -1: mute (not implemented), 0: Error only, 1: Warnings, 2: Info, 3: Verbose"""
-	if level <= loglevel:
+	if level <= params.loglevel:
 		print(msg)
 
 
