@@ -5,10 +5,14 @@ from os import path
 import params
 from utils import log, parse_args
 import views
+import actuators
 
 
 commands = {
+	'home': views.home,
 	'help': views.help,
+	'list': views.list,
+	'add' : actuators.add,
 	...   : views.not_found,
 }
 
