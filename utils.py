@@ -14,19 +14,16 @@ def parse_args(options, argv=None):
 	"""Parse args from [argv] (default to sys.argv) and return a dict
 	associating values to option names. Remaining args are listed in
 	Ellipsis entry of the returned dict."""
-	argv = argv or sys.argv[1:]
-	args = {o: None for o in options.values()}
+	args = {o[0]: None for o in options.values()}
 	args[...] = [] # Remaining arguments
-	cur = None
+
+	argv = iter(argv or sys.argv[1:])
 	for arg in argv:
-		if cur != None:
-			args[cur] = arg
-			cur = None
+		if arg in options:
+			k, t = options[arg]
+			args[k] = True if t == bool else t(next(argv))
 		else:
-			if arg in options:
-				cur = options[arg]
-			else:
-				args[...].append(arg)
+			args[...].append(arg)
 
 	return args
 

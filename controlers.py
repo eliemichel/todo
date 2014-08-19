@@ -37,3 +37,8 @@ def add(argv):
 	log("Append '%s' to '%s': " % (line, f))
 	with open(f, 'a') as todo:
 		todo.write(line + '\n')
+
+
+def remove(argv):
+	log('remove', 3)
+
