@@ -2,12 +2,18 @@ import sys
 
 import params
 
+color = {
+	0: '\033[31;01m',
+	1: '\033[33m',
+	3: '\033[32m',
+}
+nocolor = '\033[0m'
 
 def log(msg, level=2):
 	"""Print log messages whom level is bellow loglevel
 	level: -1: mute (not implemented), 0: Error only, 1: Warnings, 2: Info, 3: Verbose"""
 	if level <= params.loglevel:
-		print(msg)
+		print(color.get(level, '') + msg + nocolor)
 
 
 def parse_args(options, argv=None):

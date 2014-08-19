@@ -40,5 +40,22 @@ def add(argv):
 
 
 def remove(argv):
-	log('remove', 3)
+	if len(argv) < 2:
+		log('todo: You must specify what idea you want to remove.', 0)
+		exit(1)
 
+	index = int(argv[1])
+
+	f = core.get_todo_path()
+	with open(f, 'r') as old_todo:
+		todo = old_todo.readlines()
+
+	with open(f, 'w') as new_todo:
+		for line in todo:
+			if int(line.split(':', 1)[0]) == index:
+				log("Line '%s' removed from '%s'" % (line[:-1], f))
+				break
+			else:
+				new_todo.write(line)
+		else:
+			log('todo: No idea found at index %d' % (index,), 1)
