@@ -15,7 +15,7 @@ commands = {
 
 def main():
 	argv = sys.argv[1:]
-	cmd = argv.get(0) or 'home'
+	cmd = argv[0] if argv != [] else 'home'
 	commands.get(cmd, commands[...])(argv)
 
 
